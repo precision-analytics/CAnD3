@@ -1,17 +1,18 @@
 ---
 title: "But I'm not qualified to be a data scientist!"
-subtitle: "How to transition from university to the data science industry"
 author: "Erika Braithwaite"
-font-import: https://fonts.google.com/specimen/Montserrat
-font-family: "Montserrat"
 date: "`r Sys.Date()`"
-output: 
-    slidy_presentation:
-    incremental: false
-    df_print: kable
-footer: "Consortium on Analytics for Data-Driven Decision-Making (CAnD3), March 2022"
+output:
+  slidy_presentation: null
+  incremental: no
+  df_print: kable
+  beamer_presentation: default
+font-family: Montserrat
+subtitle: How to transition from university to the data science industry
+font-import: https://fonts.google.com/specimen/Montserrat
+footer: Consortium on Analytics for Data-Driven Decision-Making (CAnD3), March 2022
 css: mystyle.css
-autosize: true 
+autosize: yes
 ---
 
 
@@ -288,6 +289,7 @@ Build a portfolio
 - Get  relevant experience, learn about new industry, create a network
 - Check out your university coop programs 
 - Internship programs in industry [IVADO labs](https://ivado.ca/en/events/ivado-digital-intelligence-internship-and-job-fair-h2020/?utm_source=MTL+NewTech&utm_campaign=d8a1232165-EMAIL_CAMPAIGN_2019_06_20_02_54_COPY_01&utm_medium=email&utm_term=0_c6228f9f7d-d8a1232165-444123085&mc_cid=d8a1232165&mc_eid=4ec14ee0c5), [Plotly](https://boards.greenhouse.io/plotly)
+- Think Tanks [Rand opportunities](https://www.rand.org/about/educational-opportunities/gsap.html) and [here](https://www.rand.org/about/educational-opportunities.html)
 
 
 
