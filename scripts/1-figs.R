@@ -12,7 +12,7 @@ library(showtext)
 library(magick)
 
 
-font_add_google("Montserrat", "Montserrat")
+font_add_google(name = "Lato", family = "Lato")
 showtext_auto()
 
 
@@ -31,7 +31,8 @@ ds_fig <- ggplot(data = venn_ds, aes(x0 = x, y0 = y, r = 2.5, fill = labels)) +
   labs(fill = NULL) +
   theme(legend.position = "none") + 
   scale_fill_viridis(option = "D", discrete = TRUE) +
-  annotate("text", x = venn_ds$x, y = venn_ds$y, label = venn_ds$labels, size = 8)
+  annotate("text", x = venn_ds$x, y = venn_ds$y, label = venn_ds$labels, size = 8, 
+           family = "Lato")
 
 ggsave(ds_fig, filename = "figs/ds_fig.png")
 
@@ -67,10 +68,13 @@ demographics_fig <- df %>%
   geom_bar(position = "fill") + 
   labs(x = "age categories", 
        y = "Percentage", 
-       title = "Gender groups by age categories") +
+       title = "Gender groups by age categories", 
+       family = "lato") +
   scale_y_continuous(expand = c(0,0), limits = c(0, 1)) +
   theme_minimal() +
-  #theme(text = element_text(family = "Monserrat")) +
+  theme(axis.title.x = element_text(size = 9, margin = margin(t=10), family = "Lato"),
+        legend.text = element_text(size = 9, family = "Lato"), 
+        axis.text.x = element_text(angle = 45, margin = margin(t=10), family = "Lato")) +
   scale_fill_viridis(option = "D", discrete = TRUE)
 
 ggsave(demographics_fig, filename = "figs/demographics_fig.png", width = 6, height = 4)
@@ -102,17 +106,20 @@ position_fig <- data.frame(fct_count(position_factor)) %>%
   mutate(prop = round(n/sum(n),2)) %>% 
   ggplot(aes(x = reorder(f, -prop), y = prop, fill = f)) + geom_bar(stat = "identity") + 
   theme_minimal() + 
+  theme(text = element_text(family = "Lato"), 
+        legend.position = "none") +
   scale_y_continuous(expand = c(0,0), limits = c(0, 1)) + 
   ggtitle("Type of position") + 
   labs(x = "Position", 
        y = "Percentage") + 
-  theme(legend.position = "none") + 
   scale_fill_viridis(option = "D", discrete = TRUE) +
   geom_text(aes(x = f, 
-                y = prop + 0.05, label = round(prop, 2))) + coord_flip()
+                y = prop + 0.05, label = round(prop, 2)), 
+            family = "Lato", 
+            size = 3) + coord_flip()
 
 
-ggsave(position_fig, filename = "figs/position_fig.png")
+ggsave(position_fig, filename = "figs/position_fig.png", width = 6, height = 4)
 
 
 #### PhD fig ----
@@ -139,7 +146,8 @@ education_fig <- data.frame(fct_count(new_factor)) %>%
              hjust = 0, 
              lineheight = 8, 
              inherit.aes = FALSE,  
-             label.size = NA) +
+             label.size = NA, 
+             family = "Lato") +
   geom_curve(data = data.frame(x = 3, y = .45, xend = 3, yend = .25), 
              mapping = aes(x = x, y = y, xend = xend, yend = yend), 
              colour = "#2D708EFF", 
@@ -152,12 +160,15 @@ education_fig <- data.frame(fct_count(new_factor)) %>%
   theme_minimal() +
   labs(x = "Highest level of education", 
        y = "Percentage") +
-  theme(legend.position = "none") + 
+  theme(text = element_text(family = "Lato"), 
+        legend.position = "none") +
   scale_fill_viridis(option = "D", discrete = TRUE) +
   geom_text(aes(x = f, 
-                y = prop + 0.05, label = round(prop, 2)))
+                y = prop + 0.05, label = round(prop, 2)), 
+            family = "Lato", 
+            size = 3)
 
-ggsave(education_fig, filename = "figs/education_fig.png")
+ggsave(education_fig, filename = "figs/education_fig.png", width = 6, height = 4 )
 
 #### Experience figs ---- 
 
@@ -169,7 +180,7 @@ coding_factor =
                         "5-10 years" = "5-10 years", 
                         "10-20 years" = "10-20 years", 
                         "20+ years" = "20+ years", 
-                        "No coding experience" = "I have never written code") 
+                        "None" = "I have never written code") 
 
 
 coding_text = "Most people have been coding for only 1-3 years!"
@@ -185,9 +196,12 @@ coding_fig <- data.frame(fct_count(coding_factor)) %>%
   labs(x = "Number of years", 
        y = "Percentage") +
   theme_minimal() + 
-  theme(legend.position = "none") + 
+  theme(legend.position = "none", 
+        text = element_text(family = "Lato")) + 
   geom_text(aes(x = f, 
-                y = prop + 0.05, label = round(prop, 2))) +
+                y = prop + 0.05, label = round(prop, 2)), 
+            family = "Lato", 
+            size = 3) +
   geom_curve(data = data.frame(x = 3, y = .60, xend = 2, yend = .4), 
              mapping = aes(x = x, y = y, xend = xend, yend = yend), 
              colour = "#2D708EFF",
@@ -196,14 +210,14 @@ coding_fig <- data.frame(fct_count(coding_factor)) %>%
              arrow = ggplot2::arrow(length = unit(0.01, "npc"), type = "closed"),
              inherit.aes = FALSE) + 
   geom_label(data = data.frame(x = 2, y = .65, label = coding_text), 
-             aes(x = x, y = y, label = coding_text), 
+             aes(x = x, y = y, label = coding_text, family = "Lato"), 
              hjust = 0, 
              lineheight = 8, 
              inherit.aes = FALSE,  
              label.size = NA) + 
   scale_fill_viridis(option = "D", discrete = TRUE) 
 
-ggsave(coding_fig, filename = "figs/coding_fig.png")
+ggsave(coding_fig, filename = "figs/coding_fig.png", width = 6, height = 4)
 
 
 #### Programming language fig ----
@@ -225,6 +239,7 @@ tool_fig <- df %>%
                            Missing = "")) %>% 
   count(tool) %>% 
   mutate(prop = round(n/sum(n),2))  %>% 
+  filter(tool != "Missing") %>% 
   ggplot(aes(x = reorder(tool, -prop), y = prop, fill = tool)) + geom_bar(stat = "identity") + 
   theme_minimal() + 
   geom_label(data = data.frame(x = 4.5, y = .30, label = box), 
@@ -232,18 +247,26 @@ tool_fig <- df %>%
              hjust  = 0, 
              lineheight = .7, 
              inherit.aes = FALSE, 
-             label.size = 0) + 
-  geom_text(aes(label = round(prop,2)), hjust = -0.5, position = position_dodge(0.9)) + 
+             label.size = 0, 
+             family = "Lato", 
+             size = 3) + 
+  geom_text(aes(label = round(prop,2)), hjust = -0.5, position = position_dodge(0.9),
+            family = "Lato", 
+            size = 3) + 
   scale_y_continuous(expand = c(0,0), limits = c(0, 1)) + 
   ggtitle("Primary tool used at work or school", 
           subtitle = "Multiple choice categories") + 
   labs(x = "Tool", 
        y = "Percentage") +
-  theme(legend.position = "none") +
+  theme(legend.position = "none", 
+        axis.title.x = element_text(family = "Lato"),
+        axis.text.x = element_text(family = "Lato"), 
+        axis.text.y = element_text(family = "Lato"),
+        axis.title.y = element_text(family = "Lato")) +
   coord_flip() + 
   scale_fill_viridis(option = "D", discrete = TRUE) 
 
-ggsave(tool_fig, filename = "figs/tool_fig.png")
+ggsave(tool_fig, filename = "figs/tool_fig.png", width = 6, height = 4)
 
 
 #### Year machine Learning fig -----
@@ -252,15 +275,26 @@ mlyears_fig <- df %>%
   count(yrs_ML) %>% 
   mutate(prop = round(n/sum(n),2),
          ml = ifelse(yrs_ML == "Under 1 year", TRUE, FALSE)) %>% 
+  filter(yrs_ML != "") %>%
+  filter(yrs_ML != "I do not use machine learning methods") %>% 
   ggplot(aes(x = reorder(yrs_ML, -prop), y = prop, fill = ml)) + geom_bar(stat = "identity") + 
   theme_minimal() + 
-  geom_text(aes(label = round(prop,2)), vjust = -0.5, position = position_dodge(0.9)) + 
+  geom_text(aes(label = round(prop,2)), vjust = -0.5, position = position_dodge(0.9), 
+            size = 3, 
+            family = "Lato") + 
   scale_y_continuous(expand = c(0,0), limits = c(0, 1)) + 
+  scale_x_discrete(labels = wrap_format(10)) +
   ggtitle("For how many years have you used machine learning methods?") + 
   labs(x = "", 
        y = "Percentage") + 
-  theme(legend.position = "none") + 
-  annotate("text", x = 5, y = .75, label = "35% of respondents have only been using ML for under a year") + 
+  theme(legend.position = "none",
+        axis.title.x = element_text(family = "Lato"),
+        axis.text.x = element_text(family = "Lato", angle = 45, margin = margin(t=10)), 
+        axis.text.y = element_text(family = "Lato"),
+        axis.title.y = element_text(family = "Lato")) + 
+  #axis.text.x = element_text(angle = 45, margin = margin(t=10), family = "Lato"))
+  annotate("text", x = 5, y = .75, label = "35% of respondents have only been using ML for under a year", 
+           family = "Lato") + 
   geom_curve(data = data.frame(x = 4, y = .68, xend = 1.5, yend = .40), 
              mapping = aes(x = x, y = y, xend = xend, yend = yend), 
              colour = "#2D708EFF",
@@ -270,7 +304,7 @@ mlyears_fig <- df %>%
              inherit.aes = FALSE) + 
   scale_fill_viridis(option = "D", discrete = TRUE) 
 
-ggsave(mlyears_fig, filename = "figs/mlyears_fig.png")
+ggsave(mlyears_fig, filename = "figs/mlyears_fig.png", width = 6, height = 4)
 
 
 #### Data science transition venn diagram ----
@@ -279,7 +313,7 @@ DS = c(0, 0, 1)
 Academia = c(0, 1, 1)
 x = c(2.7, -2.7, 0)
 y = c(-0.6, -0.6, -0.6)
-skill = c("GPA, Poster presentation\n Published papers\n Teaching \n Teaching/research assistant", 
+skill = c("GPA, Poster presentation\n Published papers\n Teaching \n Research assistant", 
           "Portfolio\n Work experience \nTechnical skills \nTeam management \nBusiness accumen", 
           "")
 
@@ -298,9 +332,11 @@ intersect_fig <- ggplot(df.venn2) +
   theme_void() +
   scale_y_continuous(limits = c(-6, 6)) +
   labs(fill = NULL) +
-  annotate("text", x = dt$x, y = dt$y, label = dt$skill, size = 4.5) +
+  annotate("text", x = dt$x, y = dt$y, label = dt$skill, size = 4.5, 
+           family = "Lato") +
   annotate("text", x = 0, y = 4.5, label = "Critical thinking communication, domain knowledge, 
-           \nproblem solving and intellectual curiosity", size = 5) + 
+           \nproblem solving and intellectual curiosity", size = 5, 
+           family = "Lato") + 
   geom_curve(data = data.frame(x = 0, y = 3.5, xend = 0, yend = -0.5), 
              mapping = aes(x = x, y = y, xend = xend, yend = yend), 
              colour = "#2D708EFF", 
@@ -336,17 +372,3 @@ ggsave(dsvenn_fig, filename = "figs/dsvenn_fig.png")
 
 #### Employer fears ----
 
-cbind("Undergrad & Masters" = c("No revelant experience", 
-                                "Will expect a lot of  hand holding", 
-                                "Training is expensive and time consuming", 
-                                "New grads tend to get trained and then leave"),
-      "PhD" = c("Experience is hyperfocused", 
-                "Unaccustomed to working collaboratively",
-                "Both under- and over-qualified", 
-                "Understimulated by day-to-day")) %>%
-  kable(format = "html") %>% 
-  kable_styling(bootstrap_options = c("striped", "hover", position = "float_right", 
-                                      font_size = 30)) %>% 
-  row_spec(0, color = "#453781FF") %>% 
-  save_kable(file = "figs/employerfears_fig.png", 
-             zoom = 1.5)

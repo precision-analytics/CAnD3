@@ -9,7 +9,7 @@ output:
     slidy_presentation:
     incremental: false
     df_print: kable
-footer: "Consortium on Analytics for Data-Driven Decision-Making (CAnD3), March 2021"
+footer: "Consortium on Analytics for Data-Driven Decision-Making (CAnD3), March 2022"
 css: mystyle.css
 autosize: true 
 ---
@@ -102,7 +102,7 @@ A combination of programming, statistics and domain knowledge.
 
 I like to think of it as *story telling using data*
 
-```{r ds_fig, out.width = "40%", fig.align='center'}
+```{r ds_fig, out.width = "35%", fig.align='center'}
 knitr::include_graphics("figs/ds_fig.png")
 ```
 
@@ -131,7 +131,7 @@ Myths about data science {#myths}
 > - Myth 1. You need a PhD to become a data scientist 
 
 
-> - Myth 2. ###
+> - Myth 2. All data scientists use Python
 
 
 > - Myth 3. Data science == AI & machine learning
@@ -151,12 +151,12 @@ knitr::include_graphics("figs/respondent_fig.png")
 ```
 `r emoji("bangbang")` Kaggle is a platform that hosts machine learning competitions. It's users are not representative of the entire data science community `r emoji("bangbang")`
 
-Data available for [2021](https://www.kaggle.com/c/kaggle-survey-2021)   
+Data available for [2021](https://www.kaggle.com/c/kaggle-survey-2021), along with survey and results.   
 
 Demographics of respondents 
 =====================================================
 
-```{r demo-fig, out.width= "75%", out.height= "60%"}
+```{r demo-fig, out.width= "65%", out.height= "60%"}
 
 knitr::include_graphics("figs/demographics_fig.png")
 
@@ -165,7 +165,7 @@ knitr::include_graphics("figs/demographics_fig.png")
 Types of data scientist positions
 ===================================================
 
-```{r position-fig, out.width= "75%", out.height= "60%"}
+```{r position-fig, out.width= "65%", out.height= "60%"}
 
 knitr::include_graphics("figs/position_fig.png")
 
@@ -175,7 +175,7 @@ knitr::include_graphics("figs/position_fig.png")
 Myth 1. You need a PhD to become a data scientist
 ====================================================
 
-```{r phd_fig, out.width= "75%", out.height= "60%"}
+```{r phd_fig, out.width= "65%", out.height= "60%"}
 knitr::include_graphics("figs/education_fig.png")
 ```
 
@@ -184,7 +184,7 @@ knitr::include_graphics("figs/education_fig.png")
 Experience of respondents 
 ====================================================
 
-```{r coding-fig, out.width= "75%", out.height= "60%"}
+```{r coding-fig, out.width= "65%", out.height= "60%"}
 
 knitr::include_graphics("figs/coding_fig.png")
 ```
@@ -194,7 +194,7 @@ Myth 2. Primary tools used at work or school
 ===================================================
 
 
-```{r tool-fig, out.width= "75%", out.height= "60%"}
+```{r tool-fig, out.width= "65%", out.height= "60%"}
 
 knitr::include_graphics("figs/tool_fig.png")
 
@@ -204,7 +204,7 @@ Myth 3. Data science == Machine learning and AI {.flexbox .vcenter}
 ==================================================
 
 
-```{r mlyears_fig, out.width= "75%", out.height= "60%"}
+```{r mlyears_fig, out.width= "65%", out.height= "60%"}
 
 knitr::include_graphics("figs/mlyears_fig.png") 
 
@@ -229,7 +229,7 @@ In 2017, the Kaggle survey asked respondents about the "biggest challenges in da
 
 From here we can  see that most people identify "dirty data" the toughest part of the job. The rest of the issues seem be organizational. 
 
-```{r challenges, out.width="60%"}
+```{r challenges, out.width="50%"}
 knitr::include_graphics("figs/kaggle_2017.png")
 ```
 
@@ -245,7 +245,7 @@ Understand your new "audience"
 `r emoji("moneybag")` The currency in academia versus the currency in the private sector `r emoji("moneybag")`
 
 
-```{r venn-diagram}
+```{r venn-diagram, out.width= "45%", out.height= "40%", fig.align='center'}
 
 knitr::include_graphics("figs/intersect_fig.png")
 
@@ -282,12 +282,6 @@ Build a portfolio
 - [Github](https://github.com/)
 - a simple personal website 
 - [Kaggle competitions](https://www.kaggle.com/)
-
-
-**Local meetups**
-
-[RLadies](https://www.meetup.com/rladies-montreal/), [Data For Good](https://www.meetup.com/DataforGood-Montreal), [PyData](https://www.meetup.com/PyData-MTL)
-
 
 **Internship**
 
@@ -337,6 +331,9 @@ knitr::include_graphics("figs/ds_shame.jpg")
 ```
 
 > - Focus on the skills listed in the job positing, not the title *but be weary of descriptions* 
+
+>- Widen your search beyond "data scientist" - many analogous positions exist with different titles: analyst, bio/statistician, health economist, R/SAS/Python programmer, technical research assistant, quantitative scientist, consultant ect.
+
 > - Don't expect that you will possess 100% of the stated skills; it's often a wishlist
 > - Try to talk to people (ideally former employees) to get insider perspective 
 
@@ -365,23 +362,34 @@ Asking for feedback after your interview can help highlight the interviewer's pe
 Employer fears
 ==================================================
 
-In general, employers are concerned that new hires without job experience will struggle to see the bigger picture and the pace. 
+In general, employers are concerned that new hires without job experience will struggle to see the bigger picture and keep up with the pace. 
 
 
-```{r fears}
+```{r fears, out.width= "65%", out.height= "60%", fig.align='center'}
 
-knitr::include_graphics("figs/employerfears_fig.png")
+cbind("Undergrad & Masters" = c("No revelant practical experience", 
+                                "Will expect a lot of  hand holding", 
+                                "Training is expensive and time consuming", 
+                                "New grads tend to get trained and then leave"),
+      "PhD" = c("Experience is hyperfocused", 
+                "Unaccustomed to working collaboratively in multidisplinary teams",
+                "Both under- and over-qualified", 
+                "Understimulated by day-to-day")) %>%
+  kable(format = "html") %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", position ="float_right",
+                                      font_size = 30)) %>% 
+  row_spec(0, color = "#453781FF")
 
 
 ```
 
-**Try to address these fears by addressing them directly in your cover letters, CV's and during the interview**
+>**Try to address these fears explicitly in your cover letter, CV and/or during the interview**
 
 Conclusion
 ===================================================
 
 
-```{r ds_venn, out.width= "40%", out.extra='style="float:right; padding:10px"'}
+```{r ds_venn, out.width = "40%", out.extra='style="float:right; padding:10px"'}
 
 knitr::include_graphics("figs/dsvenn_fig.png")
 
@@ -395,9 +403,9 @@ Pivoting to data science  from humanities, social sciences or any other discipli
 
 `r emoji("check")` Be confident that *you* know how to learn
 
-`r emoji("check")` Be ready to start at the bottom
+`r emoji("check")` Be ready to rebrand yourself 
 
-`r emoji("check")` Be ready be creative in your search and to be a hustler 
+`r emoji("check")` Be ready to be creative in your search and to be a hustler 
 
 `r emoji("check")` Your path is the right path 
 
@@ -405,7 +413,7 @@ Pivoting to data science  from humanities, social sciences or any other discipli
 New directions (my hot takes)
 ===================================================
 
-> -  Large push towards "automating" analytics is set to change the role of data scientists (e.g. Data Robot, Alteryx, Dataiku, Google Cloud AI); storytelling is one of the last aspects of data and communication that cannot be productized 
+> -  Large push towards "automating" analytics is set to change the role of data scientists (e.g. Data Robot, Alteryx, Dataiku, Google Cloud AI); storytelling and substantive expertise are the last aspects of data and communication that cannot be productized 
 
 
 > - Many organizations want to innovate but are not sure how; many ML investments have failed to deliver value  
@@ -421,7 +429,7 @@ I can be found on [twitter](https://twitter.com/ea_braithwaite) @ea_braithwaite
 
 Come check out our website [www.precision-analytics.ca](www.precision-analytics.ca)
 
-This presentation & R code can be found online [https://github.com/precision-analytics/CSCDS](https://github.com/precision-analytics/CSCDS).
+This presentation & R code can be found online [https://github.com/precision-analytics/CAnD3](https://github.com/precision-analytics/CAnD3).
 
 Simply download the entire repo via "clone/download" button; the presentation  is the html file
 
