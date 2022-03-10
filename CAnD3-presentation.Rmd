@@ -83,7 +83,7 @@ knitr::include_graphics("figs/me.jpg")
 **Our company**
 
 - Founded in 2017
-- Began as a statistical consultancy, evolved to a blend of Software as a Service
+- Blend of statistical consultancy and custom software solutions
 - Work in the biopharmaceutical sector to create tools that combine data storage, analysis and communication
 
 ```{r pa_log, out.width = "30%", fig.align='center'}
@@ -415,12 +415,15 @@ Pivoting to data science  from humanities, social sciences or any other discipli
 New directions (my hot takes)
 ===================================================
 
-> -  Large push towards "automating" analytics is set to change the role of data scientists (e.g. Data Robot, Alteryx, Dataiku, Google Cloud AI); storytelling and substantive expertise are the last aspects of data and communication that cannot be productized 
+> -  Large push towards "automating" analytics is set to change the role of data scientists (e.g. Data Robot, Alteryx, Dataiku, Google Cloud AI) but storytelling and substantive expertise cannot be productized 
 
 
 > - Many organizations want to innovate but are not sure how; many ML investments have failed to deliver value  
 
 > - In the healthcare sector, billions invested in AI for drug discovery but not a single drug has gone to market 
+
+> - Bigger data and more computing power are only useful if we have the right data to ask the useful question
+
 
 
 A big thanks!
